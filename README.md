@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+Website for collecting data against a yoga form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Here I've used database as MongoDB
+dataabse name:yogaForm
+Collection name:flexmoney
 
-## Available Scripts
+There are two folders :
 
-In the project directory, you can run:
+Client side:frontend
 
-### `npm start`
+Server side:Backend
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+In the form :
+1.The App.js is the homescreen from which we can navigate to Home.js(the form) and the payment successful screen(Response.js)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2.I've collected the data:
 
-### `npm test`
+a)Name (should not be empty)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+b)Age (should be between 18 and 65 inclusive)
 
-### `npm run build`
+c)Email ID (should be valid which is checked against a regex pattern
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+d)Phone number (should be a 10 digit phone number)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+e)The batch in which the person wishes to register (6-7 AM, 7-8 AM, 8-9 AM and 5-6 PM which is a required data and shouldn't be empty)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+So I've collected the above data and checked the valaidity of the details entered
+ Once the validity is performed on clicking the Submit button, the entered data is inserted(if the email is not already present) or updated(if the email is already 
+ present) by using the updateOne() method and sending the upsert as true.
 
-### `npm run eject`
+This collected data is updated in the database (along with the payment month)
+The fields in the collection:
+1) _ id: given by the database itself
+2) name: name of the person
+3) age: age of the person
+4) email: email of the person
+5) number: phone number of the person
+6) select: which batch he/she chooses
+7) payment_for: which month is the payment intended for
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+So email is used as query to check if the databse contains this email or not , if it is present we simply update the details otherwise add a new record
+After this the website is directed to the responsescreen which indicates that the payment is successful(which is not implemented(the payment gateway) as it wasn't asked for)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Attaching the screenshots for reference in the screenshot folder.
+Attaching ER diagram also in the screenshot folder.
